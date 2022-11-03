@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+.container{
+  max-width: 767px;
+  margin: 10px auto;
+}
+.film-card{
+  padding: 10px;
+  border-radius: 10px/10px;
+  background-color: #bbb8b8;
+  margin-bottom: 10px;
+}
+.film-card p {
+  margin: 0 0 5px 0;
+}
+.film-card h3{
+  margin: 0 0 10px 0;
+}
+.tags{
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag{
+  padding: 3px 6px;
+  background-color: #f5f5f5;
+  margin-right: 5px;
+}
+.tag__delete{
+  cursor: pointer;
+  color: red;
+}
+.tag:last-child{
+  margin-right: 0;
+}
+
