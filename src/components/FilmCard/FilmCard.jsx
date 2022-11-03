@@ -1,17 +1,14 @@
 import React, {useState} from 'react';
 
-const FilmCard =React.memo( ({title,dateOfRelease,description,setCommonTags,filmId}) => {
-    const [tags,setTags]=useState([])
+const FilmCard =React.memo( ({title,dateOfRelease,description,setCommonTags,filmId,tags,deleteTag}) => {
     const [inputTagValue,setInputTagValue]=useState("")
     const [isCreateMode,setIsCreateMode]=useState(false)
     const addTagHandle=()=>{
         setIsCreateMode(false);
         if (tags.length<=4 && inputTagValue.trim()) {
-            setTags(prevState =>([...prevState,inputTagValue]) )
-            setCommonTags({id:filmId,text:inputTagValue})
+            setCommonTags({id:Math.random(),text:inputTagValue,filmId})
         }
     }
-    console.log(tags);
     return (
         <div key={Math.random()} className={"film-card"}>
             <h3>{title.map(titlePart=>`${titlePart} `)}</h3>
@@ -19,7 +16,7 @@ const FilmCard =React.memo( ({title,dateOfRelease,description,setCommonTags,film
             <p>{new Date(dateOfRelease).toLocaleDateString()}</p>
             <div className="tags">
                 {tags.map(tag=><div className="tag">
-                    {tag} <span className={"tag__delete"}>X</span></div>)}
+                    {tag.text} <span onClick={()=>deleteTag(tag.id)} className={"tag__delete"}>X</span></div>)}
             </div>
             {isCreateMode ? <div>
                 <input value={inputTagValue} onChange={e=>setInputTagValue(e.target.value)} type="text"/>
